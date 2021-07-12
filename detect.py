@@ -1,13 +1,9 @@
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
-from tensorflow.keras.preprocessing.image import img_to_array
-from tensorflow.keras.models import load_model
+from keras.models import load_model
 from imutils.video import VideoStream
 import numpy as np
-import imutils
-import time
 import cv2
-import os
 
 
 
@@ -28,7 +24,7 @@ def detect_mask(frame, face_nn, mask_nn):
             startX, startY, endX, endY = box.astype("int")
             startX, startY = max(0,startX),max(0,startY)
             endX, endY = min(w-1, endX), min(h-1, endY)
-
+            
             face = frame[startY:endY, startX:endX]
             try:
                 face = cv2.resize(face, (128,128))
